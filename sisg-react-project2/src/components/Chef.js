@@ -83,9 +83,9 @@ export default function Chef(props) {
                 </tr>
             </table>
             <div className={"row text-center"}>
-                <button className={"btn btn-lg btn-primary"} onClick={()=>onPrev()}>이전</button>
+                <button className={"btn btn-md btn-primary"} onClick={onPrev}>이전</button>
                 {page} page / {total} pages
-                <button className={"btn btn-lg btn-danger"} onClick={()=>onNext()}>다음</button>
+                <button className={"btn btn-md btn-danger"} onClick={onNext}>다음</button>
             </div>
         </div>
     )

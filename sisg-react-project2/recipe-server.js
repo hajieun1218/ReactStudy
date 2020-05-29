@@ -112,7 +112,8 @@ app.get('/recipe_news',(req,res)=>{
         // url을 통해서 xml을 가져옴
         console.log(xml);
         parser.parseString(xml,function (err,pJson) {
-            console.log(pJson);
+            console.log(pJson.rss.channel.item);
+            res.json(pJson.rss.channel.item);
         })
     })
 })
