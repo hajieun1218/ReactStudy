@@ -12,7 +12,7 @@ export default function Header(props) {
                     <li className="active"><NavLink exact to={"/"}>Home</NavLink></li>
                     <li><NavLink to={"/recipe"}>레시피</NavLink></li>
                     <li><NavLink to={"/chef"}>셰프</NavLink></li>
-                    <li><NavLink to={"/recommand"}>추천</NavLink></li>
+                    <li><NavLink to={"/recommend"}>추천</NavLink></li>
                     <li><NavLink to={"/news"}>뉴스</NavLink></li>
                 </ul>
             </div>
