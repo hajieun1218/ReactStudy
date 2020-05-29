@@ -24,7 +24,7 @@ export default function Chef(props) {
     },[total])
 
     // 이벤트 처리
-    const onPrev=useCallback(()=> {
+    const onPrev=(()=> {
         setPage(page>1?page-1:page);
         axios.get('http://localhost:3355/recipe_data',{
             params:{
@@ -34,8 +34,8 @@ export default function Chef(props) {
             setChef(result.data);  // 받아온 값을 chef에 저장
             // set메소드를 호출하면 데이터가 바뀔때마다 return()을 다시 호출하여 변경된 내용 출력
         })
-    }, [page]) // 다른 페이지를 눌렀을때만
-    const onNext=useCallback(()=> {
+    }) // 다른 페이지를 눌렀을때만
+    const onNext=(()=> {
         setPage(page<total?page+1:page);
         axios.get('http://localhost:3355/recipe_data',{
             params:{
@@ -45,7 +45,7 @@ export default function Chef(props) {
             setChef(result.data);  // 받아온 값을 chef에 저장
             // set메소드를 호출하면 데이터가 바뀔때마다 return()을 다시 호출하여 변경된 내용 출력
         })
-    },[page])
+    })
 
 
 
