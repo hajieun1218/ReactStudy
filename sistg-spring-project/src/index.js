@@ -3,14 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {Provider} from "react-redux";
-import store from "./store/store";
 
-// Provider : App한테 store를 넘겨주면 App가 모든 데이터를 공유
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
 );
 

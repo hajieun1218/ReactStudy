@@ -7,6 +7,8 @@ import RecommendFoodHouse from "./components/RecommendFoodHouse";
 import Recipe from "./components/Recipe";
 import FoodNews from "./components/FoodNews";
 import {BrowserRouter as Router,Route,Switch} from "react-router-dom";
+import {Provider} from "react-redux";
+import store from "./store/store";
 
 // main
 function App() {

@@ -56,7 +56,30 @@ app.get('/news',(req,res)=>{
         // console.log(xml)
         // xml을  pJson으로 변경
         parser.parseString(xml,function (err,pJson) {
-            console.log(pJson.rss.channel.item)
+            console.log(pJson.rss.channel.item);
+            res.json(pJson.rss.channel.item);
+        })
+    })
+})
+
+
+
+
+
+const Client=require("mongodb").MongoClient
+app.get('/recipe',(req,res)=>{
+    var page=req.query.page;
+    var rowSize=9;
+    var skip=(page*rowSize)-rowSize;
+    var url="mongodb://211.238.142.181:27017";
+    // 연결
+    Client.connect(url,(err,client)=>{
+        // Database (mydb)
+        var db=client.db("mydb");
+        // Table => Collection => recipe
+        db.collection("recipe").find({}).skip(skip).limit(rowSize).toArray((err,docs)=>{
+            res.json(docs)
+            client.close();
         })
     })
 })

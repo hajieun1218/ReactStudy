@@ -1,6 +1,7 @@
 // 저장해야할 데이터
-import {FETCH_NEWS} from "../actions/types";
+import {FETCH_NEWS, FETCH_RECIPE} from "../actions/types";
 
+// 전역변수
 const initialState={
     news:[],
     recipe:[],
@@ -13,13 +14,27 @@ const initialState={
 }
 
 // request = state ==> state.news
+/*
+    React => 이벤트 발생 ==> action{type:FETCH_NEWS,payload:검색된 데이터} => reducer(데이터를 받아서 state 갱신)
+             =========
+             시작 => 초기값
+             
+             reducer (state가 갱신) => re-rendering => 화면이 변경
+                                      ============
+                                          ajax
+ */
 
 export default function (state=initialState, action) {
     switch (action.type) {
         case FETCH_NEWS:
             return {
                 ...state,
-                news:action.payload
+                news: action.payload
+            }
+        case FETCH_RECIPE:
+            return {
+                ...state,
+                recipe: action.payload
             }
         default:
             return state;
