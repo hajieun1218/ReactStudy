@@ -1,5 +1,5 @@
 // 저장해야할 데이터
-import {FETCH_NEWS, FETCH_RECIPE} from "../actions/types";
+import {FETCH_NEWS, FETCH_RECIPE, FETCH_CATEGORY, FETCH_CATE_FOOD} from "../actions/types";
 
 // 전역변수
 const initialState={
@@ -35,6 +35,16 @@ export default function (state=initialState, action) {
             return {
                 ...state,
                 recipe: action.payload
+            }
+        case FETCH_CATEGORY:
+            return {
+                ...state,
+                category: action.payload
+            }
+        case FETCH_CATE_FOOD:
+            return {
+                ...state,
+                food: action.payload
             }
         default:
             return state;

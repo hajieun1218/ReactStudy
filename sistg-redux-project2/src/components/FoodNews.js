@@ -2,11 +2,27 @@ import React,{useEffect,useState} from "react";
 import {useDispatch,useSelector} from "react-redux";
 import {fetchNews} from "../actions/foodActions";
 
+
+import {FETCH_NEWS} from "../actions/types";
+import axios from 'axios';
+
 export default function FoodNews(props) {
     const dispatch=useDispatch();
     const [fd,setFd]=useState('맛집');
     useEffect(()=>{
         dispatch(fetchNews(fd))
+
+        // action 사용 안하고 component에서 바로 reducer 연결하는법
+        /*axios.get('http://localhost:3355/news',{
+            params:{
+                fd:fd
+            }
+        }).then((result)=>{
+            dispatch({
+                type:FETCH_NEWS,
+                payload:result.data
+            })
+        })*/
     },[])
     const news_data=useSelector(state=>state.foods.news)
 
@@ -16,6 +32,18 @@ export default function FoodNews(props) {
     }
     const onBtnClick=()=>{
         dispatch(fetchNews(fd))
+
+        // 똑같은 데이터를 반복 사용해야함 ==> action함수를 사용하는것이 좋다
+        /*axios.get('http://localhost:3355/news',{
+            params:{
+                fd:fd
+            }
+        }).then((result)=>{
+            dispatch({
+                type:FETCH_NEWS,
+                payload:result.data
+            })
+        })*/
     }
 
     const html=news_data.map((m)=>
