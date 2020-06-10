@@ -184,3 +184,21 @@ app.get('/news2',(req,res)=>{
         })
     })
 })
+
+
+app.get('/recipe2',(req,res)=>{
+    var page=req.query.page;
+    var rowSize=9;
+    var skip=(page*rowSize)-rowSize;
+    var url="mongodb://211.238.142.181:27017";
+    // 연결
+    Client.connect(url,(err,client)=>{
+        // Database (mydb)
+        var db=client.db("mydb");
+        // Table => Collection => recipe
+        db.collection("recipe").find({}).skip(skip).limit(rowSize).toArray((err,docs)=>{
+            res.json({"recipe":docs})
+            client.close();
+        })
+    })
+})
