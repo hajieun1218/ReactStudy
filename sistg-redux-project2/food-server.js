@@ -128,3 +128,59 @@ app.get('/cate_food',(req,res)=>{
         })
     })
 })
+
+
+
+// ######################### andriod  ####################################
+
+app.get('/category2',(req,res)=>{
+    var url="mongodb://211.238.142.181:27017";
+    // 연결
+    Client.connect(url,(err,client)=>{
+        // Database (mydb)
+        var db=client.db("mydb");
+        // Table => Collection => recipe
+        db.collection("category").find({}).toArray((err,docs)=>{
+            res.json({category:docs})
+            client.close();
+        })
+    })
+})
+
+app.get('/cate_food2',(req,res)=>{
+    var cno=req.query.cno;
+    var url="mongodb://211.238.142.181:27017";
+    // 연결
+    Client.connect(url,(err,client)=>{
+        // Database (mydb)
+        var db=client.db("mydb");
+        // Table => Collection => recipe
+        db.collection("food").find({cno:Number(cno)}).toArray((err,docs)=>{
+            res.json({"cate_food":docs})
+            console.log(docs)
+            client.close();
+        })
+    })
+})
+
+
+app.get('/news2',(req,res)=>{
+    var fd=encodeURIComponent(req.query.fd)
+    // 네이버에 연결
+    // rss : xml
+    var url="http://newssearch.naver.com/search.naver?where=rss&query="+fd;
+    // XML => JSON (파서기 생성)
+    var parser=new xml2js.Parser({
+        explicitArray:false // 변환이 안되는것은 array에 포함하지 않는다
+    })
+
+    // 네이버 서버에 접근
+    request({url:url},(err,request,xml)=>{
+        // console.log(xml)
+        // xml을  pJson으로 변경
+        parser.parseString(xml,function (err,pJson) {
+            console.log(pJson.rss.channel.item);
+            res.json({"news":pJson.rss.channel.item});
+        })
+    })
+})
