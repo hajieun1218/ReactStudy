@@ -16,7 +16,6 @@ function Header() {
                     </div>
                     <div className="collapse navbar-collapse" id="myNavbar">
                         <ul className="nav navbar-nav navbar-right">
-                            <li><NavLink exact to={"/"}>Home</NavLink></li>
                             <li><NavLink to={"/lookup"}>영화랭킹</NavLink></li>
                             <li><NavLink to={"/ratecur"}>현재상영영화</NavLink></li>
                             <li><NavLink to={"/rateall"}>모든영화</NavLink></li>

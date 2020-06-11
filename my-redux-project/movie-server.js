@@ -68,3 +68,20 @@ app.get('/movielist',(req,res)=>{
         })
     })
 })
+
+
+app.get('/moviedetail',(req,res)=>{
+    var mno=req.query.mno;
+    var url="mongodb://localhost:27017";
+    // 연결
+    Client.connect(url,(err,client)=>{
+        // Database (mydb)
+        var db=client.db("mydb");
+        // Table => Collection => recipe
+        db.collection("movie3").find({mno:Number(mno)}).toArray((err,docs)=>{
+            res.json(docs)
+            console.log(docs)
+            client.close();
+        })
+    })
+})
